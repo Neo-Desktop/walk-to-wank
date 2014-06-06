@@ -30,11 +30,12 @@ function walk(node)
 function handleText(textNode) 
 {
 	var v = textNode.nodeValue;
-
-	v = v.replace(/\bThe Cloud\b/g, "My Butt");
-	v = v.replace(/\bThe cloud\b/g, "My butt");
-	v = v.replace(/\bthe Cloud\b/g, "my Butt");
-	v = v.replace(/\bthe cloud\b/g, "my butt");
+	
+  // Deal with the easy case
+  v = v.replace(/\b(W|w)alk/g, function(match, p1, p2, offset, string) {
+    w = String.fromCharCode(p1.charCodeAt(0));
+    return w + "ank";
+  });
 	
 	textNode.nodeValue = v;
 }
